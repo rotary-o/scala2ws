@@ -8,7 +8,7 @@ protected[whitespace] object LabelParameter extends Parameter {
     val source = mutable.StringBuilder.newBuilder
     var v = value
     source.append('\n')
-    if (v < Constants.zero) {
+    if (value < Constants.zero) {
       v = v + Constants.one
     } else if (value > Constants.zero) {
       v = v - Constants.one
