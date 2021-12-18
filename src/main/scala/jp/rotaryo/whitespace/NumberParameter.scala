@@ -6,7 +6,7 @@ protected[whitespace] object NumberParameter extends Parameter {
 
   override def getSource(value: BigInt): String = {
     val source = mutable.StringBuilder.newBuilder
-    var v = value
+    var v = if (value < Constants.zero) -value else value
     source.append('\n')
     do {
       source.append(if (v % Constants.two != Constants.zero) '\t' else ' ')
