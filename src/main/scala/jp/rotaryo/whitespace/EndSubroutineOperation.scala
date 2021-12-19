@@ -19,6 +19,6 @@ protected[whitespace] object EndSubroutineOperation extends Operation {
       return option.get + 1
     }
 
-    return index + 1
+    throw new RuntimeException("cannot return.")
   }
 }
