@@ -84,11 +84,7 @@ private[whitespace] class Container(
   }
 
   private[whitespace] def readCharacter(): Int = {
-    val c = reader.read
-    if (c == -1) {
-      throw new RuntimeException("cannot read character.")
-    }
-    return c
+    return reader.read
   }
 
   override def getSource(): String = {

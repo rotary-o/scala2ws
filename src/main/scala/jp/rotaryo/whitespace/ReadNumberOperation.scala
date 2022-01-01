@@ -18,7 +18,12 @@ protected[whitespace] object ReadNumberOperation extends Operation {
   override def run(container: Container, index: Int): Int = {
     val sb = mutable.StringBuilder.newBuilder
     while (sb.isEmpty || sb.last != '\n') {
-      sb.append(container.readCharacter.toChar)
+      val c = container.readCharacter
+      if (c == -1) {
+        sb.append('\n')
+      } else {
+        sb.append(c.toChar)
+      }
     }
     container.setHeap(container.popValue, BigInt(sb.toString.trim))
 

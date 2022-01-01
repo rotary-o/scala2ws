@@ -14,7 +14,12 @@ protected[whitespace] object ReadCharacterOperation extends Operation {
   }
 
   override def run(container: Container, index: Int): Int = {
-    container.setHeap(container.popValue, BigInt(container.readCharacter))
+    val c = container.readCharacter
+    if (c == -1) {
+      throw new RuntimeException("cannot read character.")
+    }
+
+    container.setHeap(container.popValue, BigInt(c))
 
     return index + 1
   }
