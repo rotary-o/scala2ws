@@ -5,7 +5,7 @@ import scala.collection.mutable
 protected[whitespace] object LabelParameter extends Parameter {
 
   override def getSource(value: BigInt): String = {
-    val source = mutable.StringBuilder.newBuilder
+    val source = new mutable.StringBuilder()
     var v = value
     source.append('\n')
     if (value < Constants.zero) {
@@ -29,7 +29,7 @@ protected[whitespace] object LabelParameter extends Parameter {
   override def parse(iterator: Iterator[Char]): BigInt = {
     var value = Constants.zero
     while (iterator.hasNext) {
-      val c = iterator.next
+      val c = iterator.next()
       if (c == ' ') {
         if (value == Constants.zero) {
           value = Constants.one

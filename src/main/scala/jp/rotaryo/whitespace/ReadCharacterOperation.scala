@@ -10,16 +10,16 @@ protected[whitespace] object ReadCharacterOperation extends Operation {
     return None
   }
 
-  override def preRun(container: Container, index: Int) {
+  override def preRun(container: Container, index: Int): Unit = {
   }
 
   override def run(container: Container, index: Int): Int = {
-    val c = container.readCharacter
+    val c = container.readCharacter()
     if (c == -1) {
       throw new RuntimeException("cannot read character.")
     }
 
-    container.setHeap(container.popValue, BigInt(c))
+    container.setHeap(container.popValue(), BigInt(c))
 
     return index + 1
   }

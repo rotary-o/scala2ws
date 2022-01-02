@@ -10,7 +10,7 @@ protected[whitespace] object CopyOperation extends Operation {
     return Some(NumberParameter)
   }
 
-  override def preRun(container: Container, index: Int) {
+  override def preRun(container: Container, index: Int): Unit = {
   }
 
   override def run(container: Container, index: Int): Int = {

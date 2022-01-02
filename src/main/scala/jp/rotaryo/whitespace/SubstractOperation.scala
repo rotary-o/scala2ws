@@ -10,12 +10,12 @@ protected[whitespace] object SubstractOperation extends Operation {
     return None
   }
 
-  override def preRun(container: Container, index: Int) {
+  override def preRun(container: Container, index: Int): Unit = {
   }
 
   override def run(container: Container, index: Int): Int = {
-    val second = container.popValue
-    val first = container.popValue
+    val second = container.popValue()
+    val first = container.popValue()
     container.pushValue(first - second)
 
     return index + 1

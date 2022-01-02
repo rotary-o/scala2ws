@@ -10,11 +10,11 @@ protected[whitespace] object OutputCharacterOperation extends Operation {
     return None
   }
 
-  override def preRun(container: Container, index: Int) {
+  override def preRun(container: Container, index: Int): Unit = {
   }
 
   override def run(container: Container, index: Int): Int = {
-    print(container.popValue.toChar)
+    print(container.popValue().toChar)
 
     return index + 1
   }

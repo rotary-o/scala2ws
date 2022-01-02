@@ -5,7 +5,7 @@ import scala.collection.mutable
 protected[whitespace] object NumberParameter extends Parameter {
 
   override def getSource(value: BigInt): String = {
-    val source = mutable.StringBuilder.newBuilder
+    val source = new mutable.StringBuilder()
     var v = if (value < Constants.zero) -value else value
     source.append('\n')
     do {
@@ -21,7 +21,7 @@ protected[whitespace] object NumberParameter extends Parameter {
     var sign = Constants.zero
     var value = Constants.zero
     while (iterator.hasNext) {
-      val c = iterator.next
+      val c = iterator.next()
       if (c == ' ') {
         if (sign == Constants.zero) {
           sign = Constants.one

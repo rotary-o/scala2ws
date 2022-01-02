@@ -10,11 +10,11 @@ protected[whitespace] object JumpIfZeroOperation extends Operation {
     return Some(LabelParameter)
   }
 
-  override def preRun(container: Container, index: Int) {
+  override def preRun(container: Container, index: Int): Unit = {
   }
 
   override def run(container: Container, index: Int): Int = {
-    if (container.popValue == Constants.zero) {
+    if (container.popValue() == Constants.zero) {
       return container.getLabelIndex(container.getParameter(index)) + 1
     }
 

@@ -10,11 +10,11 @@ protected[whitespace] object RetrieveOperation extends Operation {
     return None
   }
 
-  override def preRun(container: Container, index: Int) {
+  override def preRun(container: Container, index: Int): Unit = {
   }
 
   override def run(container: Container, index: Int): Int = {
-    container.pushValue(container.getHeap(container.popValue))
+    container.pushValue(container.getHeap(container.popValue()))
 
     return index + 1
   }

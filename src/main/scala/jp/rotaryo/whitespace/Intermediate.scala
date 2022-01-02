@@ -4,5 +4,5 @@ trait Intermediate {
 
   def getSource(): String
 
-  def run()
+  def run(): Unit
 }

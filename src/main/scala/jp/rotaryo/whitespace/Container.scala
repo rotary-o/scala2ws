@@ -21,12 +21,12 @@ private[whitespace] class Container(
     return parameterMap(index)
   }
 
-  private[whitespace] def pushValue(value: BigInt) {
+  private[whitespace] def pushValue(value: BigInt): Unit = {
     valueStack.push(value)
   }
 
   private[whitespace] def popValue(): BigInt = {
-    return valueStack.pop
+    return valueStack.pop()
   }
 
   private[whitespace] def hasValue(nth: BigInt): Boolean = {
@@ -42,11 +42,11 @@ private[whitespace] class Container(
     throw new RuntimeException("invalid index of value stack : " + nth.toString)
   }
 
-  private[whitespace] def clearValues() {
-    valueStack.clear
+  private[whitespace] def clearValues(): Unit = {
+    valueStack.clear()
   }
 
-  private[whitespace] def setHeap(address: BigInt, value: BigInt) {
+  private[whitespace] def setHeap(address: BigInt, value: BigInt): Unit = {
     require(address >= Constants.zero)
 
     heapMap += (address -> value)
@@ -59,7 +59,7 @@ private[whitespace] class Container(
     return if (option.nonEmpty) option.get else Constants.zero
   }
 
-  private[whitespace] def setLabelIndex(label: BigInt, index: Int) {
+  private[whitespace] def setLabelIndex(label: BigInt, index: Int): Unit = {
     require(index >= 0)
 
     if (!labelMap.contains(label)) {
@@ -75,12 +75,12 @@ private[whitespace] class Container(
     return option.get
   }
 
-  private[whitespace] def pushCallIndex(index: Int) {
+  private[whitespace] def pushCallIndex(index: Int): Unit = {
     callStack.push(index)
   }
 
   private[whitespace] def popCallIndex(): Option[Int] = {
-    return if (callStack.nonEmpty) Some(callStack.pop) else None
+    return if (callStack.nonEmpty) Some(callStack.pop()) else None
   }
 
   private[whitespace] def readCharacter(): Int = {
@@ -88,11 +88,11 @@ private[whitespace] class Container(
   }
 
   override def getSource(): String = {
-    val source = mutable.StringBuilder.newBuilder
+    val source = new mutable.StringBuilder()
     (0 until operations.size).foreach { index =>
       val op = operations(index)
-      source.append(op.getSource)
-      val param = op.getParameter
+      source.append(op.getSource())
+      val param = op.getParameter()
       if (param.nonEmpty) {
         source.append(param.get.getSource(getParameter(index)))
       }
@@ -100,7 +100,7 @@ private[whitespace] class Container(
     return source.toString
   }
 
-  override def run() {
+  override def run(): Unit = {
     try {
       (0 until operations.size).foreach { index =>
         operations(index).preRun(this, index)
@@ -113,10 +113,10 @@ private[whitespace] class Container(
         index = operations(index).run(this, index)
       }
     } finally {
-      valueStack.clear
-      heapMap.clear
-      labelMap.clear
-      callStack.clear
+      valueStack.clear()
+      heapMap.clear()
+      labelMap.clear()
+      callStack.clear()
     }
   }
 }

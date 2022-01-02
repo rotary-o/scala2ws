@@ -10,11 +10,11 @@ protected[whitespace] object OutputNumberOperation extends Operation {
     return None
   }
 
-  override def preRun(container: Container, index: Int) {
+  override def preRun(container: Container, index: Int): Unit = {
   }
 
   override def run(container: Container, index: Int): Int = {
-    print(container.popValue.toString)
+    print(container.popValue().toString)
 
     return index + 1
   }

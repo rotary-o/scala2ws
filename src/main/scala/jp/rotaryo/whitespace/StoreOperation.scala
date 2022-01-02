@@ -10,12 +10,12 @@ protected[whitespace] object StoreOperation extends Operation {
     return None
   }
 
-  override def preRun(container: Container, index: Int) {
+  override def preRun(container: Container, index: Int): Unit = {
   }
 
   override def run(container: Container, index: Int): Int = {
-    val second = container.popValue
-    val first = container.popValue
+    val second = container.popValue()
+    val first = container.popValue()
     container.setHeap(first, second)
 
     return index + 1

@@ -10,7 +10,7 @@ protected[whitespace] object MarkOperation extends Operation {
     return Some(LabelParameter)
   }
 
-  override def preRun(container: Container, index: Int) {
+  override def preRun(container: Container, index: Int): Unit = {
     container.setLabelIndex(container.getParameter(index), index)
   }
 

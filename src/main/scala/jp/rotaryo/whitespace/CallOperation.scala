@@ -10,7 +10,7 @@ protected[whitespace] object CallOperation extends Operation {
     return Some(LabelParameter)
   }
 
-  override def preRun(container: Container, index: Int) {
+  override def preRun(container: Container, index: Int): Unit = {
   }
 
   override def run(container: Container, index: Int): Int = {

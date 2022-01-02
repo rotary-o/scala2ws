@@ -13,7 +13,7 @@ protected[whitespace] trait Operation {
 
   def getParameter(): Option[Parameter]
 
-  def preRun(container: Container, index: Int)
+  def preRun(container: Container, index: Int): Unit
 
   def run(container: Container, index: Int): Int
 }
