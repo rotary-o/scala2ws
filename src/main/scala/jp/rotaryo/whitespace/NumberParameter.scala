@@ -8,10 +8,10 @@ protected[whitespace] object NumberParameter extends Parameter {
     val source = new mutable.StringBuilder()
     var v = if (value < Constants.zero) -value else value
     source.append('\n')
-    do {
+    while (v != Constants.zero) {
       source.append(if (v % Constants.two != Constants.zero) '\t' else ' ')
       v = v >> 1
-    } while (v != Constants.zero)
+    }
     source.append(if (value < Constants.zero) '\t' else ' ')
 
     return source.reverse.toString
@@ -35,6 +35,9 @@ protected[whitespace] object NumberParameter extends Parameter {
           value = (value << 1) + Constants.one
         }
       } else if (c == '\n') {
+        if (sign == Constants.zero) {
+          throw new RuntimeException("invalid parameter.")
+        }
         return sign * value
       }
     }
