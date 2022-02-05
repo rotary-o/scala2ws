@@ -15,7 +15,7 @@ protected[whitespace] object LabelParameter extends Parameter {
     }
     while (v != Constants.zero) {
       source.append(if (v % Constants.two != Constants.zero) '\t' else ' ')
-      v = v >> 1
+      v = v / Constants.two
     }
     if (value < Constants.zero) {
       source.append('\t')
