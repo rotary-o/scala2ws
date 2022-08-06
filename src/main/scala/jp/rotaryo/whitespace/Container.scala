@@ -56,7 +56,10 @@ private[whitespace] class Container(
     require(address >= Constants.zero)
 
     val option = heapMap.get(address)
-    return if (option.nonEmpty) option.get else Constants.zero
+    if (option.nonEmpty) {
+      return option.get
+    }
+    throw new RuntimeException("invalid address of heap : " + address.toString)
   }
 
   private[whitespace] def setLabelIndex(label: BigInt, index: Int): Unit = {
