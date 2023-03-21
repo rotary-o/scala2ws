@@ -49,7 +49,14 @@ private[whitespace] class Container(
   private[whitespace] def setHeap(address: BigInt, value: BigInt): Unit = {
     require(address >= Constants.zero)
 
-    heapMap += (address -> value)
+    if (heapMap.contains(address)) {
+      heapMap += (address -> value)
+    } else {
+      heapMap += (address -> value)
+      (Constants.zero until address).foreach { a =>
+        heapMap += (a -> Constants.zero)
+      }
+    }
   }
 
   private[whitespace] def getHeap(address: BigInt): BigInt = {
