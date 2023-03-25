@@ -7,8 +7,8 @@ class Builder {
   private[this] val operations = mutable.ArrayBuffer.empty[Operation]
   private[this] val parameterMap = mutable.HashMap.empty[Int, BigInt]
 
-  def push(number: Int): Builder = {
-    parameterMap += (operations.size -> BigInt(number))
+  def push(number: BigInt): Builder = {
+    parameterMap += (operations.size -> number)
     operations += PushOperation
     return this
   }
