@@ -14,7 +14,11 @@ protected[whitespace] object OutputCharacterOperation extends Operation {
   }
 
   override def run(container: Container, index: Int): Int = {
-    print(container.popValue().toChar)
+    val top = container.popValue()
+    if (top < Constants.zero) {
+      throw new RuntimeException("invalid character : " + top.toString)
+    }
+    print((top % Constants.charMax).toChar)
 
     return index + 1
   }
